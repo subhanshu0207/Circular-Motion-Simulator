@@ -195,7 +195,7 @@ class SimPanel extends JPanel {
     }
 
     SimPanel(Physics physics) {
-        setBackground(SimColors.simPanel);
+        setBackground(SimColors.simPanelBg);
 
         this.physics = physics;
 

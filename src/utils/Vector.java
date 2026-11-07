@@ -48,9 +48,6 @@ public class Vector {
             g2.draw(new Line2D.Double(x2, y2, x3, y3));
             g2.draw(new Line2D.Double(x2, y2, x4, y4));
 
-            //g2.drawString(label, (float)x2 - 5, (float)y2 - 10);
-            // label.setForeground(g2.getColor());
-            // label.paintIcon(panel, g2, (int)x2 - 15, (int)y2 + 20);
             double offset = 12;
 
             double labelCenterX = x2 - offset * Math.sin(angle);

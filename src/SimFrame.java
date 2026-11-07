@@ -1,4 +1,6 @@
 import physics.Physics;
+import utils.SimColors;
+import utils.SimFonts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,14 +37,13 @@ public class SimFrame extends JFrame {
         setUndecorated(true);
 
         int topPanelHeight = 30;
-        Color topPanelColor = new Color(30, 30, 30);
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setPreferredSize(new Dimension(0, topPanelHeight));
-        topPanel.setBackground(topPanelColor);
+        topPanel.setBackground(SimColors.topPanel);
 
         JLabel title = new JLabel("  Circular Motion Simulator");
-        title.setFont(new Font("SimSun", Font.BOLD, 15));
-        title.setForeground(Color.WHITE);
+        title.setFont(SimFonts.topPanelTitle);
+        title.setForeground(SimColors.topPanelTitle);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         buttonPanel.setOpaque(false);
@@ -55,9 +56,9 @@ public class SimFrame extends JFrame {
 
         for (JButton button : buttons) {
             button.setPreferredSize(new Dimension(45, topPanelHeight));
-            button.setFont(new Font("Arial", Font.PLAIN, 18));
-            button.setForeground(Color.WHITE);
-            button.setBackground(topPanelColor);
+            button.setFont(SimFonts.topPanelButton);
+            button.setForeground(SimColors.topPanelButton);
+            button.setBackground(SimColors.topPanel);
             button.setBorderPainted(false);
             button.setFocusPainted(false);
             button.setOpaque(true);
@@ -68,12 +69,12 @@ public class SimFrame extends JFrame {
         minimize.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                minimize.setBackground(topPanelColor.brighter());
+                minimize.setBackground(SimColors.topPanel.brighter());
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                minimize.setBackground(topPanelColor);
+                minimize.setBackground(SimColors.topPanel);
             }
         });
 
@@ -87,12 +88,12 @@ public class SimFrame extends JFrame {
         maximize.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                maximize.setBackground(topPanelColor.brighter());
+                maximize.setBackground(SimColors.topPanel.brighter());
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                maximize.setBackground(topPanelColor);
+                maximize.setBackground(SimColors.topPanel);
             }
         });
 
@@ -100,12 +101,12 @@ public class SimFrame extends JFrame {
         close.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                close.setBackground(new Color(200, 50, 50));
+                close.setBackground(SimColors.topPanelCloseButtonHover);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                close.setBackground(topPanelColor);
+                close.setBackground(SimColors.topPanel);
             }
         });
 

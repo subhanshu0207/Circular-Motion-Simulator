@@ -1,22 +1,15 @@
 package utils;
 
 import org.scilab.forge.jlatexmath.TeXIcon;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Path2D;
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
+import java.awt.geom.*;
 
 public class GraphPanel extends JPanel {
     Dimension dimension;
 
     Color bgColor;
     Color graphColor;
-
-    ArrayList<Point2D> graphPoints = new ArrayList<>();
 
     double xTickSpacing = 5;
     double yTickSpacing = 5;
@@ -29,9 +22,6 @@ public class GraphPanel extends JPanel {
 
     int scrollX = 0;
     int scrollY = 0;
-
-    boolean showGuides;
-    Point2D guidesPoint;
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -60,9 +50,6 @@ public class GraphPanel extends JPanel {
         drawTicks(g2, originX, originY, offsetX, offsetY);
 
         drawIcons(g2, originX, originY, offsetX);
-
-        if (showGuides)
-            drawGuides(g2, originX, originY);
     }
 
     private void drawAxes(Graphics2D g2, double originX, double originY, double offsetX, double offsetY) {
@@ -108,14 +95,12 @@ public class GraphPanel extends JPanel {
     }
 
     private void plotGraph(Graphics2D g2, double originX, double originY, double offsetX) {
-        graphPoints.clear();
         Path2D path = new Path2D.Double();
         boolean firstPoint = true;
 
         for (double x = originX; x <= dimension.width - offsetX; x++) {
 
             double y = originY - scaleY * calculate(((x - originX) / scaleX));
-            graphPoints.add(new Point2D.Double(x, y));
 
             if (firstPoint) {
                 path.moveTo(x, y);
@@ -128,7 +113,7 @@ public class GraphPanel extends JPanel {
     }
 
     private void drawTicks(Graphics2D g2, double originX, double originY, double offsetX, double offsetY) {
-        g2.setFont(new Font("Monospaced", Font.BOLD, 10));
+        g2.setFont(SimFonts.tick);
         FontMetrics fm = g2.getFontMetrics();
 
         int lapsX = (int) (((getWidth() - 2 * offsetX) / xTickSpacing) / scaleX);
@@ -210,56 +195,6 @@ public class GraphPanel extends JPanel {
         int y2 = scrollY + 5;
 
         yIcon.paintIcon(this, g2, x2, y2);
-    }
-
-    private void drawGuides(Graphics2D g2, double originX, double originY) {
-        g2.setColor(new Color(51, 51, 51, 113));
-        float[] dashPattern = {5, 10};
-        g2.setStroke(new BasicStroke(
-                2,
-                BasicStroke.CAP_SQUARE,
-                BasicStroke.JOIN_BEVEL,
-                10.0f,
-                dashPattern,
-                0.0f
-        ));
-
-        //drawing X-guide
-        g2.draw(
-                new Line2D.Double(
-                        guidesPoint,
-                        new Point2D.Double(guidesPoint.getX(), originY)
-                )
-        );
-
-        //drawing Y-guide
-        g2.draw(
-                new Line2D.Double(
-                        guidesPoint,
-                        new Point2D.Double(originX, guidesPoint.getY())
-                )
-        );
-
-        g2.setColor(Color.red);
-        g2.setStroke(new BasicStroke());
-
-        double cxPoint = guidesPoint.getX();
-        double cyPoint = guidesPoint.getY();
-        double radius = 3;
-        g2.fill(
-                new Ellipse2D.Double(
-                        cxPoint - radius, cyPoint - radius,
-                        2 * radius, 2 * radius
-                )
-        );
-    }
-
-    public void setGuidesPoint(Point2D guidesPoint) {
-        this.guidesPoint = guidesPoint;
-    }
-
-    public void showGuides(boolean showGuides) {
-        this.showGuides = showGuides;
     }
 
     public void setScrollPosition(int x, int y) {

@@ -1,14 +1,14 @@
 FINAL THINGS TO SET UP BEFORE COMPLETING THIS SIM!
 
 1)  Add three graphs of θ(t), ω(t) and \alpha(t) to aid visualization along with a separate list of checkboxes for
-    giving choice to user to show one at a time.
+    giving choice to user to show one at a time.            🟢
 
-2) Check all the physics calculation
+2) Check all the physics calculation                        🟢
 
 3) Refactor the code
-    -First, check for duplicate codes and automate it.
+    -First, check for duplicate codes and automate it.      🟢
     -Second, bring all the colors and fonts under the universal SimColors and SimFonts classes for easy editing.
-    -If necessary, create some util classes for easy maintainability.
+    -If necessary, create some util classes for easy maintainability.   🟢
 
 4) Beautify the appearance of the application
     -First, select a suitable color palate

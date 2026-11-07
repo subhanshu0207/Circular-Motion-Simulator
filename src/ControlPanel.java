@@ -1,17 +1,11 @@
 import physics.Physics;
-import utils.CustomButton;
+import utils.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ControlPanel extends JPanel {
-    Color bgColor = new Color(50, 50, 50);
-    Color buttonColor = new Color(40, 40, 40);
-    Color buttonHoverColor = new Color(55, 55, 55);
-    Color buttonFontColor = new Color(240, 240, 240);
-
-    Font buttonFont = new Font("Monospaced", Font.BOLD, 12);
-
+    
     private CustomButton startButton, pauseButton, resetButton, exitButton;
     private final Physics physics;
     private final Timer timer;
@@ -22,10 +16,10 @@ public class ControlPanel extends JPanel {
     final int LENGTH = 200;
 
     private void addButtons() {
-        startButton = new CustomButton("START", buttonFont, buttonColor, buttonHoverColor, buttonColor.darker(), buttonFontColor);
-        pauseButton = new CustomButton("PAUSE", buttonFont, buttonColor, buttonHoverColor, buttonColor.darker(), buttonFontColor);
-        resetButton = new CustomButton("RESET", buttonFont, buttonColor, buttonHoverColor, buttonColor.darker(), buttonFontColor);
-        exitButton = new CustomButton("EXIT", buttonFont, buttonColor, buttonHoverColor, buttonColor.darker(), buttonFontColor);
+        startButton = new CustomButton("START", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
+        pauseButton = new CustomButton("PAUSE", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
+        resetButton = new CustomButton("RESET", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
+        exitButton = new CustomButton("EXIT", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
 
         startButton.addActionListener(e -> {
             physics.time.resume();
@@ -72,7 +66,7 @@ public class ControlPanel extends JPanel {
         checkBoxPanel = new CheckBoxPanel(simPanel, infoPanel);
 
         setPreferredSize(new Dimension(LENGTH, 0));
-        setBackground(bgColor);
+        setBackground(SimColors.controlPanelBg);
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         addButtons();

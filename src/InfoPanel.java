@@ -1,11 +1,11 @@
 import physics.Physics;
 import utils.*;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
+
     final int infoPanelWidth = 250;
     final int padding = 40;
 
@@ -49,7 +49,7 @@ public class InfoPanel extends JPanel {
 
     public InfoPanel(Physics physics) {
         setPreferredSize(new Dimension(infoPanelWidth, 0));
-        setBackground(Color.black);
+        setBackground(SimColors.simPanelBg);
         setLayout(new FlowLayout(FlowLayout.CENTER, padding, padding / 2));
 
         this.physics = physics;
@@ -64,7 +64,7 @@ public class InfoPanel extends JPanel {
 
         int magPanelHeight = 275;
         magPanel.setPreferredSize(new Dimension(infoPanelWidth - padding / 2, magPanelHeight));
-        magPanel.setBackground(Color.black);
+        magPanel.setBackground(SimColors.magPanelBg);
         magPanel.setLayout(new BorderLayout(0, 5));
 
         setMagHeaderPanel();
@@ -79,7 +79,7 @@ public class InfoPanel extends JPanel {
         );
         int magScrollPanelHeight = 200;
         magScrollPanel.setPreferredSize(new Dimension(infoPanelWidth - padding / 2 + 10, magScrollPanelHeight));
-        magScrollPanel.setBackground(Color.black);
+        magScrollPanel.setBackground(SimColors.magScrollPanelBg);
         magScrollPanel.setBorder(BorderFactory.createLineBorder(SimColors.magPanelBorder, 5, true));
 
         ScrollBars scrollBars = new ScrollBars();
@@ -93,7 +93,7 @@ public class InfoPanel extends JPanel {
     void setMagHeaderPanel() {
         magHeaderPanel = new JPanel();
         magHeaderPanel.setPreferredSize(new Dimension(0, 40));
-        magHeaderPanel.setBackground(Color.black);
+        magHeaderPanel.setBackground(SimColors.magHeaderPanelBg);
 
         JLabel header = new JLabel("<html><b><u>Magnitude Panel</u></b></html>");
         header.setVerticalAlignment(JLabel.TOP);
@@ -107,7 +107,7 @@ public class InfoPanel extends JPanel {
 
     void setMagQuantsPanel() {
         magQuantsPanel = new JPanel(new GridBagLayout());
-        magQuantsPanel.setBackground(Color.black);
+        magQuantsPanel.setBackground(SimColors.magQuantsPanelBg);
         GridBagConstraints gdc = new GridBagConstraints();
         gdc.insets = new Insets(5, 5, 5, 5);
 
@@ -211,7 +211,7 @@ public class InfoPanel extends JPanel {
     public void setGraphs() {
         GraphPanel angleTimeGraphPanel = new GraphPanel(
                 new Dimension(1000, 1000),
-                Color.white,
+                SimColors.graphPanel,
                 SimColors.theta
         ) {
             @Override
@@ -229,7 +229,7 @@ public class InfoPanel extends JPanel {
 
         GraphPanel omegaTimeGraphPanel = new GraphPanel(
                 new Dimension(1000, 1000),
-                Color.white,
+                SimColors.graphPanel,
                 SimColors.omega
         ) {
             @Override
@@ -247,7 +247,7 @@ public class InfoPanel extends JPanel {
 
         GraphPanel alphaTimeGraphPanel = new GraphPanel(
                 new Dimension(1000, 1000),
-                Color.white,
+                SimColors.graphPanel,
                 SimColors.alpha
         ) {
             @Override
@@ -272,9 +272,9 @@ public class InfoPanel extends JPanel {
         Graph graph = new Graph(
                 new Dimension(infoPanelWidth - padding / 2, graphHeight),
                 graphPanel,
-                BorderFactory.createLineBorder(SimColors.magPanelBorder, 5, true)
+                BorderFactory.createLineBorder(SimColors.graphBorder, 5, true)
         );
-        graph.setBackground(Color.black);
+        graph.setBackground(SimColors.graphBg);
         graph.setHorizontalScrollBar(scrollBars.getHorizontalBar());
         graph.setVerticalScrollBar(scrollBars.getVerticalBar());
         graph.addAdjustmentListeners();
@@ -292,11 +292,11 @@ public class InfoPanel extends JPanel {
         return new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
-                thumbColor = Color.lightGray;
-                thumbDarkShadowColor = Color.lightGray;
-                thumbHighlightColor = Color.lightGray;
-                thumbLightShadowColor = Color.lightGray;
-                trackColor = Color.darkGray;
+                thumbColor = SimColors.thumbColor;
+                thumbDarkShadowColor = SimColors.thumbColor;
+                thumbHighlightColor = SimColors.thumbColor;
+                thumbLightShadowColor = SimColors.thumbColor;
+                trackColor = SimColors.trackColor;
             }
 
             @Override
@@ -305,7 +305,7 @@ public class InfoPanel extends JPanel {
 
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                g2.setColor(Color.lightGray);
+                g2.setColor(thumbColor);
 
                 g2.fillRoundRect(
                         thumbBounds.x + 2,

@@ -8,9 +8,6 @@ import java.awt.*;
 
 public class SliderPanel extends JPanel {
 
-    Color sliderPanelBg = new Color(30, 30, 30);
-    Color trackColor = new Color(60, 60, 60);
-
     private final Physics physics;
     private final SimPanel simPanel;
     private final InfoPanel infoPanel;
@@ -91,7 +88,7 @@ public class SliderPanel extends JPanel {
                         RenderingHints.VALUE_ANTIALIAS_ON
                 );
 
-                g2.setColor(trackColor);
+                g2.setColor(SimColors.sliderTrackColor);
 
                 g2.fillRoundRect(
                         trackRect.x,
@@ -144,7 +141,7 @@ public class SliderPanel extends JPanel {
 
         Dimension dimension = new Dimension(190, 230);
         setPreferredSize(dimension);
-        setBackground(sliderPanelBg);
+        setBackground(SimColors.sliderPanelBg);
         setBorder(BorderFactory.createEmptyBorder(padding, padding, padding, padding));
         setLayout(new GridLayout(4, 1, padding, padding));
 

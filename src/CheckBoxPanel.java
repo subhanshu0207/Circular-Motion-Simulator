@@ -1,20 +1,11 @@
-import utils.SimFonts;
-
+import utils.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CheckBoxPanel extends JPanel {
-    Color checkBoxQuants = Color.lightGray;
-    Color checkBoxHeader = Color.gray;
-    Color graphCheckBoxPanelColor = new Color(55, 55, 55);
-    Color vectorCheckBoxPanelColor = new Color(55, 55, 55);
-
     private final int padding = 7;
-
-    private final Color bgColor = new Color(30, 30, 30);
-    private final Border paddedBorder = BorderFactory.createEmptyBorder(padding, padding, padding, padding);
 
     private JPanel vectorCheckBoxPanel;
     private JCheckBox atVector;
@@ -34,22 +25,22 @@ public class CheckBoxPanel extends JPanel {
     public void setVectorCheckBoxPanel() {
         vectorCheckBoxPanel = new JPanel(new GridLayout(6, 1, 0, 5));
         vectorCheckBoxPanel.setPreferredSize(new Dimension(0, 180));
-        vectorCheckBoxPanel.setBackground(vectorCheckBoxPanelColor);
+        vectorCheckBoxPanel.setBackground(SimColors.vectorCheckBoxPanel);
 
         JLabel header = new JLabel("<html><b><u>Vectors</u></b></html>", JLabel.CENTER);
         header.setFont(SimFonts.checkBoxPanelHeader);
-        header.setForeground(checkBoxHeader);
+        header.setForeground(SimColors.checkBoxHeader);
         vectorCheckBoxPanel.add(header);
     }
 
     public void setGraphCheckBoxPanel() {
         graphCheckBoxPanel = new JPanel(new GridLayout(4, 1, 5, 5));
         graphCheckBoxPanel.setPreferredSize(new Dimension(0, 120));
-        graphCheckBoxPanel.setBackground(graphCheckBoxPanelColor);
+        graphCheckBoxPanel.setBackground(SimColors.graphCheckBoxPanel);
 
         JLabel header = new JLabel("<html><b><u>Graphs</u></b></html>", JLabel.CENTER);
         header.setFont(SimFonts.checkBoxPanelHeader);
-        header.setForeground(checkBoxHeader);
+        header.setForeground(SimColors.checkBoxHeader);
         graphCheckBoxPanel.add(header);
     }
 
@@ -128,8 +119,8 @@ public class CheckBoxPanel extends JPanel {
         vectorCheckBox.setFocusable(false);
         vectorCheckBox.addActionListener(e);
         vectorCheckBox.setFont(SimFonts.checkBoxPanelQuants);
-        vectorCheckBox.setForeground(checkBoxQuants);
-        vectorCheckBox.setBackground(vectorCheckBoxPanelColor);
+        vectorCheckBox.setForeground(SimColors.checkBoxQuants);
+        vectorCheckBox.setBackground(SimColors.vectorCheckBoxPanel);
 
         Image uncheckedImage = new ImageIcon("lib/unchecked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         Image checkedImage = new ImageIcon("lib/checked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
@@ -148,8 +139,8 @@ public class CheckBoxPanel extends JPanel {
         graphCheckBox.setFocusable(false);
         graphCheckBox.addActionListener(e);
         graphCheckBox.setFont(SimFonts.checkBoxPanelQuants);
-        graphCheckBox.setForeground(checkBoxQuants);
-        graphCheckBox.setBackground(graphCheckBoxPanelColor);
+        graphCheckBox.setForeground(SimColors.checkBoxQuants);
+        graphCheckBox.setBackground(SimColors.graphCheckBoxPanel);
 
         Image uncheckedImage = new ImageIcon("lib/unchecked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         Image checkedImage = new ImageIcon("lib/checked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
@@ -177,9 +168,10 @@ public class CheckBoxPanel extends JPanel {
     CheckBoxPanel(SimPanel simPanel, InfoPanel infoPanel) {
         Dimension dimension = new Dimension(190, 300);
 
-        setBackground(bgColor);
+        setBackground(SimColors.checkBoxPanelBg);
         setPreferredSize(dimension);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        Border paddedBorder = BorderFactory.createEmptyBorder(padding, padding, padding, padding);
         setBorder(paddedBorder);
 
         this.simPanel = simPanel;

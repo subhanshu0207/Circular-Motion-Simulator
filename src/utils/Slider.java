@@ -14,7 +14,7 @@ public class Slider extends JPanel {
         this.scale = scale;
         sliderLabel = new JLabel(label + ": " + String.format("%.2f", initial / scale));
         sliderLabel.setForeground(fontColor);
-        sliderLabel.setFont(new Font("Monospaced", Font.BOLD, 11));
+        sliderLabel.setFont(SimFonts.sliderLabel);
 
         slider = new JSlider(min, max, initial);
         slider.setPreferredSize(new Dimension(180, 20));
@@ -26,5 +26,4 @@ public class Slider extends JPanel {
         add(sliderLabel);
         add(slider);
     }
-
 }
