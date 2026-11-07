@@ -8,10 +8,10 @@ public class Physics {
     public double pathRadius, ballRadius;
     public double initTheta, initOmega;
     public double omega, alpha, theta;
+    public final double maxOmega = 5;
     public double timeScale;
     public double x, y;    //co-ordinates of center of ball(in meters)
 
-    private final double maxOmega = 5;
 
     public Vector at;  //Tangential acceleration
     public Vector ac;  //Centripetal acceleration

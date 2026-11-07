@@ -16,10 +16,10 @@ public class ControlPanel extends JPanel {
     final int LENGTH = 200;
 
     private void addButtons() {
-        startButton = new CustomButton("START", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
-        pauseButton = new CustomButton("PAUSE", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
-        resetButton = new CustomButton("RESET", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
-        exitButton = new CustomButton("EXIT", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.button);
+        startButton = new CustomButton("START", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.buttonFont);
+        pauseButton = new CustomButton("PAUSE", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.buttonFont);
+        resetButton = new CustomButton("RESET", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.buttonFont);
+        exitButton = new CustomButton("EXIT", SimFonts.button, SimColors.button, SimColors.buttonHover, SimColors.button.darker(), SimColors.buttonFont);
 
         startButton.addActionListener(e -> {
             physics.time.resume();

@@ -41,14 +41,15 @@ public class GraphPanel extends JPanel {
         g2.setStroke(new BasicStroke(1.8f));
         plotGraph(g2, originX, originY, offsetX);
 
-        g2.setColor(Color.black);
+        g2.setColor(new Color(105, 115, 150));
         g2.setStroke(new BasicStroke(1f));
         drawAxes(g2, originX, originY, offsetX, offsetY);
 
-        g2.setColor(new Color(0, 0, 0, 92));
+        g2.setColor(new Color(105, 115, 150, 90));
         g2.setStroke(new BasicStroke(0.9f));
         drawTicks(g2, originX, originY, offsetX, offsetY);
 
+        g2.setColor(new Color(143, 156, 204));
         drawIcons(g2, originX, originY, offsetX);
     }
 
