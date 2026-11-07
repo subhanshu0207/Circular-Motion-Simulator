@@ -169,6 +169,7 @@ public class InfoPanel extends JPanel {
         thetaInRadiansValue.setText(String.format("%.2f", Math.abs(physics.theta)) + " radians");
         thetaInDegreesValue.setText(String.format("%.2f", Math.abs(Math.toDegrees(physics.theta))) + "°");
         omegaValue.setText(String.format("%.2f", Math.abs(physics.omega)) + " rad/s");
+        alphaValue.setText(String.format("%.2f", Math.abs(physics.alpha)) + " rad/s²");
         timeScaleValue.setText(String.format("%.2f", physics.timeScale) + "x");
 
         repaint();

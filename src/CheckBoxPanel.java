@@ -122,9 +122,9 @@ public class CheckBoxPanel extends JPanel {
         vectorCheckBox.setForeground(SimColors.checkBoxQuants);
         vectorCheckBox.setBackground(SimColors.vectorCheckBoxPanel);
 
-        Image uncheckedImage = new ImageIcon("lib/unchecked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-        Image checkedImage = new ImageIcon("lib/checked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-        Image hoverImage = new ImageIcon("lib/unchecked-hover.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image uncheckedImage = new ImageIcon(getClass().getResource("/images/unchecked.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image checkedImage = new ImageIcon(getClass().getResource("/images/checked.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image hoverImage = new ImageIcon(getClass().getResource("/images/unchecked-hover.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
 
         vectorCheckBox.setIcon(new ImageIcon(uncheckedImage));
         vectorCheckBox.setSelectedIcon(new ImageIcon(checkedImage));
@@ -142,9 +142,9 @@ public class CheckBoxPanel extends JPanel {
         graphCheckBox.setForeground(SimColors.checkBoxQuants);
         graphCheckBox.setBackground(SimColors.graphCheckBoxPanel);
 
-        Image uncheckedImage = new ImageIcon("lib/unchecked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-        Image checkedImage = new ImageIcon("lib/checked.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-        Image hoverImage = new ImageIcon("lib/unchecked-hover.png").getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image uncheckedImage = new ImageIcon(getClass().getResource("/images/unchecked.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image checkedImage = new ImageIcon(getClass().getResource("/images/checked.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+        Image hoverImage = new ImageIcon(getClass().getResource("/images/unchecked-hover.png")).getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
 
         graphCheckBox.setIcon(new ImageIcon(uncheckedImage));
         graphCheckBox.setSelectedIcon(new ImageIcon(checkedImage));
