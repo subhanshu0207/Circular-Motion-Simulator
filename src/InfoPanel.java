@@ -96,7 +96,7 @@ public class InfoPanel extends JPanel {
         magHeaderPanel.setPreferredSize(new Dimension(0, 40));
         magHeaderPanel.setBackground(Color.black);
 
-        JLabel header = new JLabel("Magnitude Panel");
+        JLabel header = new JLabel("<html><b><u>Magnitude Panel</u></b></html>");
         header.setVerticalAlignment(JLabel.TOP);
         header.setHorizontalAlignment(JLabel.CENTER);
         header.setFont(SimFonts.magPanelHeader);
