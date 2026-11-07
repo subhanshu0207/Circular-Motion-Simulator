@@ -1,4 +1,5 @@
 package utils;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,7 +22,7 @@ public class Slider extends JPanel {
         slider.setOpaque(false);
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 5));
-        setBackground(new Color(20,20, 20));
+        setBackground(new Color(20, 20, 20));
         add(sliderLabel);
         add(slider);
     }

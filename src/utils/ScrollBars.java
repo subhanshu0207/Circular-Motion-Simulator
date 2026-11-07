@@ -5,8 +5,8 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class ScrollBars {
-    private JScrollBar verticalBar;
-    private JScrollBar horizontalBar;
+    private final JScrollBar verticalBar;
+    private final JScrollBar horizontalBar;
     public BasicScrollBarUI horizontalBarUI;
     public BasicScrollBarUI verticalBarUI;
 
@@ -21,9 +21,10 @@ public class ScrollBars {
                 thumbLightShadowColor = Color.darkGray;
                 trackColor = Color.black;
             }
+
             @Override
             protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                Graphics2D g2 = (Graphics2D)g;
+                Graphics2D g2 = (Graphics2D) g;
 
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -37,14 +38,17 @@ public class ScrollBars {
                         5, 5
                 );
             }
+
             @Override
             protected JButton createDecreaseButton(int orientation) {
                 return createZeroButton();
             }
+
             @Override
             protected JButton createIncreaseButton(int orientation) {
                 return createZeroButton();
             }
+
             private JButton createZeroButton() {
                 JButton button = new JButton();
                 button.setPreferredSize(new Dimension(0, 0));
@@ -63,9 +67,10 @@ public class ScrollBars {
                 thumbLightShadowColor = Color.darkGray;
                 trackColor = Color.black;
             }
+
             @Override
             protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                Graphics2D g2 = (Graphics2D)g;
+                Graphics2D g2 = (Graphics2D) g;
 
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -79,14 +84,17 @@ public class ScrollBars {
                         5, 5
                 );
             }
+
             @Override
             protected JButton createDecreaseButton(int orientation) {
                 return createZeroButton();
             }
+
             @Override
             protected JButton createIncreaseButton(int orientation) {
                 return createZeroButton();
             }
+
             private JButton createZeroButton() {
                 JButton button = new JButton();
                 button.setPreferredSize(new Dimension(0, 0));

@@ -1,5 +1,8 @@
 package utils;
-import org.scilab.forge.jlatexmath.*;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 
 public class Latex {
     public static TeXIcon convert(String f) {
@@ -10,6 +13,7 @@ public class Latex {
                 15
         );
     }
+
     public static TeXIcon convert(String f, int size) {
         TeXFormula formula = new TeXFormula(f);
 

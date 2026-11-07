@@ -3,10 +3,6 @@ import utils.CustomButton;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.border.*;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class ControlPanel extends JPanel {
     Color bgColor = new Color(50, 50, 50);
@@ -17,11 +13,11 @@ public class ControlPanel extends JPanel {
     Font buttonFont = new Font("Monospaced", Font.BOLD, 12);
 
     private CustomButton startButton, pauseButton, resetButton, exitButton;
-    private Physics physics;
-    private Timer timer;
-    private SimPanel simPanel;
-    private SliderPanel sliderPanel;
-    private CheckBoxPanel checkBoxPanel;
+    private final Physics physics;
+    private final Timer timer;
+    private final SimPanel simPanel;
+    private final SliderPanel sliderPanel;
+    private final CheckBoxPanel checkBoxPanel;
 
     final int LENGTH = 200;
 

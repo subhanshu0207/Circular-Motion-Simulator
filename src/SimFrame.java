@@ -2,10 +2,11 @@ import physics.Physics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class Frame extends JFrame {
-    Frame() {
+public class SimFrame extends JFrame {
+    SimFrame() {
         setTitle("Circular Motion Simulator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 700);
@@ -88,6 +89,7 @@ public class Frame extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 maximize.setBackground(topPanelColor.brighter());
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 maximize.setBackground(topPanelColor);

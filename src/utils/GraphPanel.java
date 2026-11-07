@@ -4,7 +4,10 @@ import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class GraphPanel extends JPanel {
@@ -34,7 +37,7 @@ public class GraphPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -52,13 +55,13 @@ public class GraphPanel extends JPanel {
         g2.setStroke(new BasicStroke(1f));
         drawAxes(g2, originX, originY, offsetX, offsetY);
 
-        g2.setColor(new Color(0,0,0, 92));
+        g2.setColor(new Color(0, 0, 0, 92));
         g2.setStroke(new BasicStroke(0.9f));
         drawTicks(g2, originX, originY, offsetX, offsetY);
 
         drawIcons(g2, originX, originY, offsetX);
 
-        if(showGuides)
+        if (showGuides)
             drawGuides(g2, originX, originY);
     }
 
@@ -109,16 +112,15 @@ public class GraphPanel extends JPanel {
         Path2D path = new Path2D.Double();
         boolean firstPoint = true;
 
-        for(double x = originX; x <= dimension.width - offsetX ; x++) {
+        for (double x = originX; x <= dimension.width - offsetX; x++) {
 
             double y = originY - scaleY * calculate(((x - originX) / scaleX));
             graphPoints.add(new Point2D.Double(x, y));
 
-            if(firstPoint) {
+            if (firstPoint) {
                 path.moveTo(x, y);
                 firstPoint = false;
-            }
-            else
+            } else
                 path.lineTo(x, y);
         }
 
@@ -129,13 +131,13 @@ public class GraphPanel extends JPanel {
         g2.setFont(new Font("Monospaced", Font.BOLD, 10));
         FontMetrics fm = g2.getFontMetrics();
 
-        int lapsX = (int)(((getWidth() - 2 * offsetX) / xTickSpacing) / scaleX);
-        int lapsHalfY = (int)(((getHeight() / 2.0 - offsetY) / yTickSpacing) / scaleY);
+        int lapsX = (int) (((getWidth() - 2 * offsetX) / xTickSpacing) / scaleX);
+        int lapsHalfY = (int) (((getHeight() / 2.0 - offsetY) / yTickSpacing) / scaleY);
 
         double lengthOfTick = 7;
 
         //X ticks
-        for (int i = 1 ; i <= lapsX ; i++) {
+        for (int i = 1; i <= lapsX; i++) {
             double tickX = originX + i * xTickSpacing * scaleX;
 
             g2.draw(
@@ -148,7 +150,7 @@ public class GraphPanel extends JPanel {
             String label = String.format("%.2f", i * xTickSpacing);
             g2.drawString(
                     label,
-                    (float)(tickX - fm.stringWidth(label) / 2.0), (float)(originY + lengthOfTick / 2 + fm.getHeight())
+                    (float) (tickX - fm.stringWidth(label) / 2.0), (float) (originY + lengthOfTick / 2 + fm.getHeight())
             );
         }
 
@@ -166,7 +168,7 @@ public class GraphPanel extends JPanel {
             String label = "-" + String.format("%.2f", i * yTickSpacing);
             g2.drawString(
                     label,
-                    (float)(originX - lengthOfTick / 2 - fm.stringWidth(label) - 2), (float)(tickY + (fm.getAscent() - fm.getDescent()) / 2.0)
+                    (float) (originX - lengthOfTick / 2 - fm.stringWidth(label) - 2), (float) (tickY + (fm.getAscent() - fm.getDescent()) / 2.0)
             );
         }
 
@@ -184,7 +186,7 @@ public class GraphPanel extends JPanel {
             String label = String.format("%.2f", i * yTickSpacing);
             g2.drawString(
                     label,
-                    (float)(originX - lengthOfTick / 2 - fm.stringWidth(label) - 2), (float)(tickY + (fm.getAscent() - fm.getDescent()) / 2.0)
+                    (float) (originX - lengthOfTick / 2 - fm.stringWidth(label) - 2), (float) (tickY + (fm.getAscent() - fm.getDescent()) / 2.0)
             );
         }
     }
@@ -196,14 +198,14 @@ public class GraphPanel extends JPanel {
 
         int x = (parentWidth - xIcon.getIconWidth() + scrollX);
 
-        int y = (int)(originY - xIcon.getIconHeight());
+        int y = (int) (originY - xIcon.getIconHeight());
 
-        if(x <= (getWidth() - offsetX))
+        if (x <= (getWidth() - offsetX))
             xIcon.paintIcon(this, g2, x, y);
         else
-            xIcon.paintIcon(this, g2, getWidth() - (int)offsetX, y);
+            xIcon.paintIcon(this, g2, getWidth() - (int) offsetX, y);
 
-        int x2 = (int)(originX + 7);
+        int x2 = (int) (originX + 7);
 
         int y2 = scrollY + 5;
 
@@ -267,14 +269,14 @@ public class GraphPanel extends JPanel {
     }
 
     public void setScales(double scaleX, double scaleY) {
-        if(scaleX > 0 && scaleY > 0) {
+        if (scaleX > 0 && scaleY > 0) {
             this.scaleX = scaleX;
             this.scaleY = scaleY;
         }
     }
 
     public void setTickSpacing(double xTickSpacing, double yTickSpacing) {
-        if(xTickSpacing > 0 && yTickSpacing > 0) {
+        if (xTickSpacing > 0 && yTickSpacing > 0) {
             this.xTickSpacing = xTickSpacing;
             this.yTickSpacing = yTickSpacing;
         }

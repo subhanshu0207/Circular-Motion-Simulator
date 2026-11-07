@@ -1,5 +1,7 @@
 package physics;
-import utils.*;
+
+import utils.CustomTime;
+import utils.Vector;
 
 public class Physics {
 
@@ -17,6 +19,7 @@ public class Physics {
     public Vector acc;   //Resultant Vector
 
     public CustomTime time;
+
     public Physics(double pathRadius, double ballRadius) {   //in meters
         time = new CustomTime();
         this.pathRadius = pathRadius;

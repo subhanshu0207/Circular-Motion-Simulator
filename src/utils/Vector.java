@@ -1,11 +1,14 @@
 package utils;
+
+import org.scilab.forge.jlatexmath.TeXIcon;
+
 import java.awt.*;
-import java.awt.geom.*;
-import org.scilab.forge.jlatexmath.*;
+import java.awt.geom.Line2D;
 
 public class Vector {
     public double magnitude;
     public double angle;   //in radians
+
     public static void drawVector(
             Graphics2D g2,
             Component panel,
@@ -14,7 +17,7 @@ public class Vector {
             double x, double y,
             Vector vector
     ) {
-        if(vector.magnitude != 0) {
+        if (vector.magnitude != 0) {
             double angle = vector.angle;
             double x1 = x;
             double y1 = y;
@@ -63,6 +66,7 @@ public class Vector {
             label.paintIcon(panel, g2, labelX, labelY);
         }
     }
+
     public static void drawVector(
             Graphics2D g2,
             Color color,
@@ -92,6 +96,7 @@ public class Vector {
         g2.draw(new Line2D.Double(x2, y2, x3, y3));
         g2.draw(new Line2D.Double(x2, y2, x4, y4));
     }
+
     public Vector(double magnitude, double angle) {
         this.magnitude = magnitude;
         this.angle = angle;

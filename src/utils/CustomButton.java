@@ -55,14 +55,11 @@ public class CustomButton extends JButton {
 
         if (model.isPressed()) {
             background = pressBg;
-        }
-        else if (model.isRollover()) {
+        } else if (model.isRollover()) {
             background = hoverBg;
-        }
-        else if (!model.isEnabled()) {
+        } else if (!model.isEnabled()) {
             background = normalBg.darker();
-        }
-        else {
+        } else {
             background = normalBg;
         }
 
@@ -88,7 +85,7 @@ public class CustomButton extends JButton {
 
         // Draw centred text
         g2.setFont(getFont());
-        if(!model.isEnabled())
+        if (!model.isEnabled())
             g2.setColor(getForeground().darker());
         else
             g2.setColor(getForeground());

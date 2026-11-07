@@ -1,14 +1,17 @@
 import org.scilab.forge.jlatexmath.TeXIcon;
 import physics.Physics;
-import utils.*;
+import utils.Latex;
+import utils.SimColors;
+import utils.Vector;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.Ellipse2D;
 
 class SimPanel extends JPanel {
     private boolean showAt, showAc, showPos, showV, showAcc;
 
-    private Physics physics;
+    private final Physics physics;
 
     private final TeXIcon acLabel = Latex.convert("\\vec{a_c}");
 
@@ -139,7 +142,7 @@ class SimPanel extends JPanel {
     }
 
     private void drawAccVector(Graphics2D g2, double cx, double cy) {
-        if(showAcc)
+        if (showAcc)
             Vector.drawVector(
                     g2,
                     this,

@@ -1,35 +1,35 @@
 import utils.SimFonts;
 
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
 
 public class CheckBoxPanel extends JPanel {
     Color checkBoxQuants = Color.lightGray;
     Color checkBoxHeader = Color.gray;
     Color graphCheckBoxPanelColor = new Color(55, 55, 55);
-    Color vectorCheckBoxPanelColor = new Color(55,55,55);
+    Color vectorCheckBoxPanelColor = new Color(55, 55, 55);
 
     private final int padding = 7;
 
-    private Color bgColor = new Color(30, 30, 30);
-    private Border paddedBorder = BorderFactory.createEmptyBorder(padding, padding, padding, padding);
+    private final Color bgColor = new Color(30, 30, 30);
+    private final Border paddedBorder = BorderFactory.createEmptyBorder(padding, padding, padding, padding);
 
     private JPanel vectorCheckBoxPanel;
-        private JCheckBox atVector;
-        private JCheckBox acVector;
-        private JCheckBox accVector;
-        private JCheckBox posVector;
-        private JCheckBox vVector;
+    private JCheckBox atVector;
+    private JCheckBox acVector;
+    private JCheckBox accVector;
+    private JCheckBox posVector;
+    private JCheckBox vVector;
 
     private JPanel graphCheckBoxPanel;
-        private JCheckBox thetaGraph;
-        private JCheckBox omegaGraph;
-        private JCheckBox alphaGraph;
+    private JCheckBox thetaGraph;
+    private JCheckBox omegaGraph;
+    private JCheckBox alphaGraph;
 
-    private InfoPanel infoPanel;
-    private SimPanel simPanel;
+    private final InfoPanel infoPanel;
+    private final SimPanel simPanel;
 
     public void setVectorCheckBoxPanel() {
         vectorCheckBoxPanel = new JPanel(new GridLayout(6, 1, 0, 5));
@@ -82,7 +82,7 @@ public class CheckBoxPanel extends JPanel {
 
         thetaGraph = getGraphCheckBox("Angle-Time Graph", e -> {
             removeGraphs();
-            if(thetaGraph.isSelected()) {
+            if (thetaGraph.isSelected()) {
                 infoPanel.add(infoPanel.angleTimeGraph);
                 omegaGraph.setSelected(false);
                 alphaGraph.setSelected(false);
@@ -94,7 +94,7 @@ public class CheckBoxPanel extends JPanel {
 
         omegaGraph = getGraphCheckBox("Omega-Time Graph", e -> {
             removeGraphs();
-            if(omegaGraph.isSelected()) {
+            if (omegaGraph.isSelected()) {
                 infoPanel.add(infoPanel.omegaTimeGraph);
                 alphaGraph.setSelected(false);
                 thetaGraph.setSelected(false);
@@ -104,7 +104,7 @@ public class CheckBoxPanel extends JPanel {
 
         alphaGraph = getGraphCheckBox("Alpha-Time Graph", e -> {
             removeGraphs();
-            if(alphaGraph.isSelected()) {
+            if (alphaGraph.isSelected()) {
                 infoPanel.add(infoPanel.alphaTimeGraph);
                 thetaGraph.setSelected(false);
                 omegaGraph.setSelected(false);

@@ -1,17 +1,19 @@
 import physics.Physics;
-import utils.*;
+import utils.SimColors;
+import utils.Slider;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 
 public class SliderPanel extends JPanel {
 
-    Color sliderPanelBg = new Color(30,30,30);
+    Color sliderPanelBg = new Color(30, 30, 30);
     Color trackColor = new Color(60, 60, 60);
 
-    private Physics physics;
-    private SimPanel simPanel;
-    private InfoPanel infoPanel;
+    private final Physics physics;
+    private final SimPanel simPanel;
+    private final InfoPanel infoPanel;
     private Slider omegaSlider, alphaSlider, pathRadiusSlider, timeScaleSlider;
 
     private final int padding = 5;
@@ -24,7 +26,7 @@ public class SliderPanel extends JPanel {
         omegaSlider.slider.setUI(getBasicSliderUI(omegaSlider.slider, SimColors.omega.darker()));
         omegaSlider.slider.addChangeListener(e -> {
             double value = omegaSlider.slider.getValue() / omegaSlider.scale;
-            omegaSlider.sliderLabel.setText(omegaSlider.label + ": " + String.format("%.2f",value));
+            omegaSlider.sliderLabel.setText(omegaSlider.label + ": " + String.format("%.2f", value));
             physics.omega = -value;
             physics.initOmega = -value;
 
@@ -39,7 +41,7 @@ public class SliderPanel extends JPanel {
         alphaSlider.slider.setUI(getBasicSliderUI(alphaSlider.slider, SimColors.alpha.darker()));
         alphaSlider.slider.addChangeListener(e -> {
             double value = alphaSlider.slider.getValue() / alphaSlider.scale;
-            alphaSlider.sliderLabel.setText(alphaSlider.label + ": " + String.format("%.2f",value));
+            alphaSlider.sliderLabel.setText(alphaSlider.label + ": " + String.format("%.2f", value));
             physics.alpha = -value;
 
             alphaSlider.repaint();
@@ -53,7 +55,7 @@ public class SliderPanel extends JPanel {
         pathRadiusSlider.slider.setUI(getBasicSliderUI(pathRadiusSlider.slider, SimColors.pos.darker()));
         pathRadiusSlider.slider.addChangeListener(e -> {
             double value = pathRadiusSlider.slider.getValue() / pathRadiusSlider.scale;
-            pathRadiusSlider.sliderLabel.setText(pathRadiusSlider.label + ": " + String.format("%.2f",value));
+            pathRadiusSlider.sliderLabel.setText(pathRadiusSlider.label + ": " + String.format("%.2f", value));
             physics.pathRadius = value;
 
             pathRadiusSlider.repaint();
