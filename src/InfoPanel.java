@@ -7,143 +7,159 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class InfoPanel extends JPanel {
-    final int WIDTH = 250;
-    final int HEIGHT = 500;
+    final int infoPanelWidth = 250;
     final int padding = 40;
 
     Graph angleTimeGraph;
     Graph omegaTimeGraph;
     Graph alphaTimeGraph;
 
-    private JScrollPane infoScrollPanel;
+    private JScrollPane magScrollPanel;
 
-    private JPanel infoPanel;
-        private JPanel infoHeaderPanel;
-        private JPanel infoQuantsPanel;
-            private JLabel acLabel;
-            private JLabel acValue;
+    private JPanel magPanel;
+    private JPanel magHeaderPanel;
+    private JPanel magQuantsPanel;
+        private JLabel thetaInRadiansLabel;
+        private JLabel thetaInRadiansValue;
 
-            private JLabel atLabel;
-            private JLabel atValue;
+        private JLabel thetaInDegreesLabel;
+        private JLabel thetaInDegreesValue;
 
-            private JLabel posLabel;
-            private JLabel posValue;
+        private JLabel omegaLabel;
+        private JLabel omegaValue;
 
-            private JLabel vLabel;
-            private JLabel vValue;
+        private JLabel alphaLabel;
+        private JLabel alphaValue;
 
-            private JLabel thetaInRadiansLabel;
-            private JLabel thetaInRadiansValue;
+        private JLabel acLabel;
+        private JLabel acValue;
 
-            private JLabel thetaInDegreesLabel;
-            private JLabel thetaInDegreesValue;
+        private JLabel atLabel;
+        private JLabel atValue;
 
-            private JLabel omegaLabel;
-            private JLabel omegaValue;
+        private JLabel posLabel;
+        private JLabel posValue;
 
-    Physics physics;
+        private JLabel vLabel;
+        private JLabel vValue;
+
+        private JLabel timeScaleLabel;
+        private JLabel timeScaleValue;
+
+    private Physics physics;
 
     public InfoPanel(Physics physics) {
-        setPreferredSize(new Dimension(WIDTH, 0));
+        setPreferredSize(new Dimension(infoPanelWidth, 0));
         setBackground(Color.black);
         setLayout(new FlowLayout(FlowLayout.CENTER, padding, padding / 2));
 
         this.physics = physics;
 
-        setInfoPanel();
-        setInfoScrollPanel();
+        setMagPanel();
+        setMagScrollPanel();
         setGraphs();
     }
 
-    void setInfoScrollPanel() {
-        infoScrollPanel = new JScrollPane(
-                infoPanel,
+    void setMagPanel() {
+        magPanel = new JPanel();
+
+        int magPanelHeight = 275;
+        magPanel.setPreferredSize(new Dimension(infoPanelWidth - padding / 2, magPanelHeight));
+        magPanel.setBackground(Color.black);
+        magPanel.setLayout(new BorderLayout(0, 5));
+
+        setMagHeaderPanel();
+        setMagQuantsPanel();
+    }
+
+    void setMagScrollPanel() {
+        magScrollPanel = new JScrollPane(
+                magPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
         );
-        infoScrollPanel.setPreferredSize(new Dimension(WIDTH - padding / 2 + 10, 200));
-        infoScrollPanel.setBackground(Color.black);
-        infoScrollPanel.setBorder(BorderFactory.createLineBorder(SimColors.infoPanelBorder, 5, true));
+        int magScrollPanelHeight = 200;
+        magScrollPanel.setPreferredSize(new Dimension(infoPanelWidth - padding / 2 + 10, magScrollPanelHeight));
+        magScrollPanel.setBackground(Color.black);
+        magScrollPanel.setBorder(BorderFactory.createLineBorder(SimColors.magPanelBorder, 5, true));
 
         ScrollBars scrollBars = new ScrollBars();
 
-        infoScrollPanel.setVerticalScrollBar(scrollBars.getVerticalBar());
-        infoScrollPanel.setHorizontalScrollBar(scrollBars.getHorizontalBar());
+        magScrollPanel.setVerticalScrollBar(scrollBars.getVerticalBar());
+        magScrollPanel.setHorizontalScrollBar(scrollBars.getHorizontalBar());
 
-        add(infoScrollPanel);
+        add(magScrollPanel);
     }
 
-    void setInfoPanel() {
-        infoPanel = new JPanel();
-
-        infoPanel.setPreferredSize(new Dimension(WIDTH - padding / 2, HEIGHT));
-        infoPanel.setBackground(Color.black);
-        infoPanel.setLayout(new BorderLayout(0, 5));
-
-        setInfoHeaderPanel();
-        setInfoQuantsPanel();
-    }
-
-    void setInfoHeaderPanel() {
-        infoHeaderPanel = new JPanel();
-        infoHeaderPanel.setPreferredSize(new Dimension(0, 40));
-        infoHeaderPanel.setBackground(Color.black);
+    void setMagHeaderPanel() {
+        magHeaderPanel = new JPanel();
+        magHeaderPanel.setPreferredSize(new Dimension(0, 40));
+        magHeaderPanel.setBackground(Color.black);
 
         JLabel header = new JLabel("Magnitude Panel");
-        //header.setBorder(BorderFactory.createLineBorder(Color.red, 2));
         header.setVerticalAlignment(JLabel.TOP);
         header.setHorizontalAlignment(JLabel.CENTER);
-        header.setFont(SimFonts.infoPanelHeader);
-        header.setForeground(SimColors.infoPanelHeader);
-        infoHeaderPanel.add(header);
+        header.setFont(SimFonts.magPanelHeader);
+        header.setForeground(SimColors.magPanelHeader);
+        magHeaderPanel.add(header);
 
-        infoPanel.add(infoHeaderPanel, BorderLayout.NORTH);
+        magPanel.add(magHeaderPanel, BorderLayout.NORTH);
     }
 
-    void setInfoQuantsPanel() {
-        infoQuantsPanel = new JPanel(new GridBagLayout());
-        infoQuantsPanel.setBackground(Color.black);
+    void setMagQuantsPanel() {
+        magQuantsPanel = new JPanel(new GridBagLayout());
+        magQuantsPanel.setBackground(Color.black);
         GridBagConstraints gdc = new GridBagConstraints();
         gdc.insets = new Insets(5, 5,5, 5);
 
-        thetaInRadiansLabel = quantLabel("θ: ", SimColors.theta, gdc, 0, 0);
-        infoQuantsPanel.add(thetaInRadiansLabel, gdc);
-        thetaInRadiansValue = quantValue((physics.theta), "radians", SimColors.theta, gdc, 1, 0);
-        infoQuantsPanel.add(thetaInRadiansValue, gdc);
+        thetaInRadiansLabel = quantLabel("θ(in radians): ", SimColors.theta, gdc,0);
+        magQuantsPanel.add(thetaInRadiansLabel, gdc);
+        thetaInRadiansValue = quantValue((physics.theta), " ", "radians", SimColors.theta, gdc,0);
+        magQuantsPanel.add(thetaInRadiansValue, gdc);
 
-        thetaInDegreesLabel = quantLabel("θ: ", SimColors.theta, gdc, 0, 1);
-        infoQuantsPanel.add(thetaInDegreesLabel, gdc);
-        thetaInDegreesValue = quantValue((Math.toDegrees(physics.theta)), "°", SimColors.theta, gdc, 1, 1);
-        infoQuantsPanel.add(thetaInDegreesValue, gdc);
+        thetaInDegreesLabel = quantLabel("θ(in degrees): ", SimColors.theta, gdc,1);
+        magQuantsPanel.add(thetaInDegreesLabel, gdc);
+        thetaInDegreesValue = quantValue((Math.toDegrees(physics.theta)), "", "°", SimColors.theta, gdc,1);
+        magQuantsPanel.add(thetaInDegreesValue, gdc);
 
-        omegaLabel = quantLabel("ω: ", SimColors.omega, gdc, 0, 2);
-        infoQuantsPanel.add(omegaLabel, gdc);
-        omegaValue = quantValue(physics.initOmega, "rad/s", SimColors.omega, gdc, 1, 2);
-        infoQuantsPanel.add(omegaValue, gdc);
+        omegaLabel = quantLabel("ω: ", SimColors.omega, gdc,2);
+        magQuantsPanel.add(omegaLabel, gdc);
+        omegaValue = quantValue((physics.initOmega), " ", "rad/s", SimColors.omega, gdc,2);
+        magQuantsPanel.add(omegaValue, gdc);
 
-        acLabel = quantLabel("Centripetal Acc.: ", SimColors.ac, gdc, 0, 3);
-        infoQuantsPanel.add(acLabel, gdc);
-        acValue = quantValue((physics.pathRadius * physics.omega * physics.omega), "m/s²", SimColors.ac, gdc, 1, 3);
-        infoQuantsPanel.add(acValue, gdc);
+        alphaLabel = quantLabel("α: ", SimColors.alpha, gdc,3);
+        magQuantsPanel.add(alphaLabel, gdc);
+        alphaValue = quantValue((physics.initOmega), " ", "rad/s²", SimColors.alpha, gdc,3);
+        magQuantsPanel.add(alphaValue, gdc);
 
-        atLabel = quantLabel("Tangential Acc.: ", SimColors.at, gdc, 0, 4);
-        infoQuantsPanel.add(atLabel, gdc);
-        atValue = quantValue((physics.pathRadius * physics.alpha), "m/s²", SimColors.at, gdc, 1, 4);
-        infoQuantsPanel.add(atValue, gdc);
+        acLabel = quantLabel("Centripetal Acc.: ", SimColors.ac, gdc,4);
+        magQuantsPanel.add(acLabel, gdc);
+        acValue = quantValue((physics.pathRadius * physics.omega * physics.omega), " ", "m/s²", SimColors.ac, gdc,4);
+        magQuantsPanel.add(acValue, gdc);
 
-        posLabel = quantLabel("Ball Position: ", SimColors.pos, gdc, 0, 5);
-        infoQuantsPanel.add(posLabel, gdc);
-        posValue = quantValue(physics.pathRadius, "m", SimColors.pos, gdc, 1, 5);
-        infoQuantsPanel.add(posValue, gdc);
+        atLabel = quantLabel("Tangential Acc.: ", SimColors.at, gdc,5);
+        magQuantsPanel.add(atLabel, gdc);
+        atValue = quantValue((physics.pathRadius * physics.alpha), " ", "m/s²", SimColors.at, gdc,5);
+        magQuantsPanel.add(atValue, gdc);
 
-        vLabel = quantLabel("Velocity: ", SimColors.velocity, gdc, 0, 6);
-        infoQuantsPanel.add(vLabel, gdc);
-        vValue = quantValue((physics.pathRadius * physics.omega), "m/s", SimColors.velocity, gdc, 1, 6);
-        infoQuantsPanel.add(vValue, gdc);
+        posLabel = quantLabel("Ball Position: ", SimColors.pos, gdc,6);
+        magQuantsPanel.add(posLabel, gdc);
+        posValue = quantValue((physics.pathRadius), " ", "m", SimColors.pos, gdc,6);
+        magQuantsPanel.add(posValue, gdc);
 
-        addSpacer(7);
+        vLabel = quantLabel("Velocity: ", SimColors.velocity, gdc,7);
+        magQuantsPanel.add(vLabel, gdc);
+        vValue = quantValue((physics.pathRadius * physics.omega), " ", "m/s", SimColors.velocity, gdc,7);
+        magQuantsPanel.add(vValue, gdc);
 
-        infoPanel.add(infoQuantsPanel);
+        timeScaleLabel = quantLabel("Time Scale: ", SimColors.timeScale, gdc, 8);
+        magQuantsPanel.add(timeScaleLabel, gdc);
+        timeScaleValue = quantValue((physics.timeScale), "", "x", SimColors.timeScale, gdc, 8);
+        magQuantsPanel.add(timeScaleValue, gdc);
+
+        addSpacer(9);
+
+        magPanel.add(magQuantsPanel);
     }
 
     public void update() {
@@ -152,30 +168,31 @@ public class InfoPanel extends JPanel {
         posValue.setText(String.format("%.2f", Math.abs(physics.pathRadius)) + " m");
         vValue.setText(String.format("%.2f", Math.abs(physics.pathRadius * physics.omega)) + " m/s");
         thetaInRadiansValue.setText(String.format("%.2f", Math.abs(physics.theta)) + " radians");
-        thetaInDegreesValue.setText(String.format("%.2f", Math.abs(Math.toDegrees(physics.theta))) + " °");
+        thetaInDegreesValue.setText(String.format("%.2f", Math.abs(Math.toDegrees(physics.theta))) + "°");
         omegaValue.setText(String.format("%.2f", Math.abs(physics.omega)) + " rad/s");
+        timeScaleValue.setText(String.format("%.2f", physics.timeScale) + "x");
 
         repaint();
     }
 
-    JLabel quantLabel(String label, Color color, GridBagConstraints gdc, int x, int y) {
+    JLabel quantLabel(String label, Color color, GridBagConstraints gdc, int y) {
         JLabel jLabel = new JLabel(label);
-        jLabel.setFont(SimFonts.infoPanelQuants);
+        jLabel.setFont(SimFonts.magPanelQuants);
         jLabel.setForeground(color);
 
-        gdc.gridx = x;
+        gdc.gridx = 0;
         gdc.gridy = y;
         gdc.anchor = GridBagConstraints.WEST;
 
         return jLabel;
     }
 
-    JLabel quantValue(double value, String unit, Color color, GridBagConstraints gdc, int x, int y) {
-        JLabel jLabel = new JLabel(Math.abs(value) + " " + unit);
-        jLabel.setFont(SimFonts.infoPanelQuants);
+    JLabel quantValue(double value, String separator, String unit, Color color, GridBagConstraints gdc, int y) {
+        JLabel jLabel = new JLabel(String.format("%.2f", Math.abs(value)) + separator + unit);
+        jLabel.setFont(SimFonts.magPanelQuants);
         jLabel.setForeground(color);
 
-        gdc.gridx = x;
+        gdc.gridx = 1;
         gdc.gridy = y;
         gdc.anchor = GridBagConstraints.EAST;
 
@@ -189,7 +206,7 @@ public class InfoPanel extends JPanel {
         spacer.gridwidth = GridBagConstraints.REMAINDER;
         spacer.weighty = 1.0;
         spacer.fill = GridBagConstraints.VERTICAL;
-        infoQuantsPanel.add(Box.createVerticalBox(), spacer);
+        magQuantsPanel.add(Box.createVerticalBox(), spacer);
     }
 
     public void setGraphs() {
@@ -252,10 +269,11 @@ public class InfoPanel extends JPanel {
         ScrollBars scrollBars = new ScrollBars();
         changeBarUI(scrollBars);
 
+        int graphHeight = 400;
         Graph graph = new Graph(
-                new Dimension(WIDTH - padding / 2, 300),
+                new Dimension(infoPanelWidth - padding / 2, graphHeight),
                 graphPanel,
-                BorderFactory.createLineBorder(SimColors.infoPanelBorder, 5, true)
+                BorderFactory.createLineBorder(SimColors.magPanelBorder, 5, true)
         );
         graph.setBackground(Color.black);
         graph.setHorizontalScrollBar(scrollBars.getHorizontalBar());

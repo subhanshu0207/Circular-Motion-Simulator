@@ -6,6 +6,7 @@ public class Physics {
     public double pathRadius, ballRadius;
     public double initTheta, initOmega;
     public double omega, alpha, theta;
+    public double timeScale;
     public double x, y;    //co-ordinates of center of ball(in meters)
 
     private final double maxOmega = 5;
@@ -25,7 +26,8 @@ public class Physics {
     }
 
     public void reset() {
-        updateTimeScale(1.0);
+        timeScale = 1.0;
+        updateTimeScale(timeScale);
         omega = 0;
         alpha = 0;
         initTheta = 0;
@@ -77,6 +79,9 @@ public class Physics {
         acc.angle = Math.atan2(ay, ax);
     }
 
-    public void updateTimeScale(double timeScale) { time.setTimeScale(timeScale); }
+    public void updateTimeScale(double timeScale) {
+        time.setTimeScale(timeScale);
+        this.timeScale = timeScale;
+    }
 
 }

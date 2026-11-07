@@ -6,11 +6,9 @@ import java.awt.*;
 import java.awt.geom.*;
 
 class SimPanel extends JPanel {
-    Physics physics;
+    private boolean showAt, showAc, showPos, showV, showAcc;
 
-    Color bgColor = SimColors.simPanel;
-
-    boolean showAt, showAc, showPos, showV;
+    private Physics physics;
 
     private final TeXIcon acLabel = Latex.convert("\\vec{a_c}");
 
@@ -20,15 +18,14 @@ class SimPanel extends JPanel {
 
     private final TeXIcon accLabel = Latex.convert("\\vec{a}");
 
-    final int ppm = 20;
+    private final double ppm = 20;
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        double offset = 0;
-        double cx = getWidth() / 2.0 + offset;
+        double cx = getWidth() / 2.0;
         double cy = getHeight() / 2.0;
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -42,7 +39,7 @@ class SimPanel extends JPanel {
         drawVelocityVector(g2, cx, cy);
     }
 
-    void drawPath(Graphics2D g2, double cx, double cy) {
+    private void drawPath(Graphics2D g2, double cx, double cy) {
         g2.setColor(SimColors.path);
 
         float[] dashPattern = {5, 10};
@@ -66,7 +63,7 @@ class SimPanel extends JPanel {
         );
     }
 
-    void drawBall(Graphics2D g2, double cx, double cy) {
+    private void drawBall(Graphics2D g2, double cx, double cy) {
         double ballX = cx + ppm * (physics.x - physics.ballRadius);
         double ballY = cy + ppm * (physics.y - physics.ballRadius);
         g2.setColor(SimColors.ball);
@@ -78,7 +75,7 @@ class SimPanel extends JPanel {
         ));
     }
 
-    void drawPosVector(Graphics2D g2, double cx, double cy) {
+    private void drawPosVector(Graphics2D g2, double cx, double cy) {
         if (showPos)
             //Drawing Position Vector
             Vector.drawVector(
@@ -96,7 +93,7 @@ class SimPanel extends JPanel {
             );
     }
 
-    void drawAcVector(Graphics2D g2, double cx, double cy) {
+    private void drawAcVector(Graphics2D g2, double cx, double cy) {
         if (showAc)
             //Drawing Centripetal Acceleration Vector
             Vector.drawVector(
@@ -110,7 +107,7 @@ class SimPanel extends JPanel {
             );
     }
 
-    void drawAtVector(Graphics2D g2, double cx, double cy) {
+    private void drawAtVector(Graphics2D g2, double cx, double cy) {
         if (showAt)
             //Drawing Tangential Acceleration Vector
             Vector.drawVector(
@@ -124,7 +121,7 @@ class SimPanel extends JPanel {
             );
     }
 
-    void drawVelocityVector(Graphics2D g2, double cx, double cy) {
+    private void drawVelocityVector(Graphics2D g2, double cx, double cy) {
         if (showV) {
             double offset = 20;
 
@@ -141,20 +138,61 @@ class SimPanel extends JPanel {
         }
     }
 
-    void drawAccVector(Graphics2D g2, double cx, double cy) {
-        Vector.drawVector(
-                g2,
-                this,
-                SimColors.acc,
-                accLabel,
-                cx + ppm * physics.x,
-                cy + ppm * physics.y,
-                physics.acc
-        );
+    private void drawAccVector(Graphics2D g2, double cx, double cy) {
+        if(showAcc)
+            Vector.drawVector(
+                    g2,
+                    this,
+                    SimColors.acc,
+                    accLabel,
+                    cx + ppm * physics.x,
+                    cy + ppm * physics.y,
+                    physics.acc
+            );
+    }
+
+    public boolean isShowAc() {
+        return showAc;
+    }
+
+    public void setShowAc(boolean showAc) {
+        this.showAc = showAc;
+    }
+
+    public boolean isShowAt() {
+        return showAt;
+    }
+
+    public void setShowAt(boolean showAt) {
+        this.showAt = showAt;
+    }
+
+    public boolean isShowPos() {
+        return showPos;
+    }
+
+    public void setShowPos(boolean showPos) {
+        this.showPos = showPos;
+    }
+
+    public boolean isShowV() {
+        return showV;
+    }
+
+    public void setShowV(boolean showV) {
+        this.showV = showV;
+    }
+
+    public boolean isShowAcc() {
+        return showAcc;
+    }
+
+    public void setShowAcc(boolean showAcc) {
+        this.showAcc = showAcc;
     }
 
     SimPanel(Physics physics) {
-        setBackground(bgColor);
+        setBackground(SimColors.simPanel);
 
         this.physics = physics;
 
