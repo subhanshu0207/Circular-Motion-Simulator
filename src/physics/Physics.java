@@ -12,7 +12,6 @@ public class Physics {
     public double timeScale;
     public double x, y;    //co-ordinates of center of ball(in meters)
 
-
     public Vector at;  //Tangential acceleration
     public Vector ac;  //Centripetal acceleration
     public Vector v;   //Velocity

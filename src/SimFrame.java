@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 
 public class SimFrame extends JFrame {
     SimFrame() {
-        setTitle("Circular Motion Simulator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 700);
 
